@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+}
+
+#canvas {
+    height: 80vh;
+}
+
+#box {
+    display: inline-block;
+    background-color: black;
+    margin-top: 25vh;
+    height: 250px;
+    width: 250px;
+}
