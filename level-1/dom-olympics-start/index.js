@@ -1,3 +1,4 @@
+var messagesBox = document.querySelector(".messages");
 
 //qualifier
 var head = document.getElementById("header");
@@ -17,28 +18,36 @@ rightMessage[1].textContent = "Yea that sounds great!";
 
 var clearBtn = document.querySelector("#clear-button");
 clearBtn.addEventListener("click", clearMessages);
-var messageBox = document.querySelector(".messages");
 function clearMessages() {
-    messageBox.textContent = "";
+    messagesBox.textContent = "";
 };
 
 //silver
-var dropdown = document.querySelector("#theme-drop-down");
+var dropdown = document.getElementById("theme-drop-down");
 dropdown.addEventListener('change', changeTheme);
 
 function changeTheme() {
-    if (dropdown.value == "theme-two") {
-        for (var i = 0; i < 2; i++) {
-            leftMessage[i].style.backgroundColor = "red";
-            rightMessage[i].style.backgroundColor = "black";
-            rightMessage[i].style.color = "white";
-        }
-    }
-    else if (dropdown.value == "theme-one") {
-        for (var i = 0; i < 2; i++) {
+
+    //used to update number of messages on left and right side
+    //after potentially adding messages via insertMessage()
+    leftMessage = document.querySelectorAll(".left");
+    rightMessage = document.querySelectorAll(".right");
+    if (dropdown.value == "theme-one") {
+        for (var i = 0; i < leftMessage.length; i++) {
             leftMessage[i].style.backgroundColor = "burlywood";
+        }
+        for (var i = 0; i < rightMessage.length; i++) {
             rightMessage[i].style.backgroundColor = "lightblue";
             rightMessage[i].style.color = "black";
+        }
+    }
+    else {
+        for (var i = 0; i < leftMessage.length; i++) {
+            leftMessage[i].style.backgroundColor = "red";
+        }
+        for (var i = 0; i < rightMessage.length; i++) {
+            rightMessage[i].style.backgroundColor = "black";
+            rightMessage[i].style.color = "white";
         }
     }
 }
@@ -48,7 +57,6 @@ function changeTheme() {
 //send button needs to insert text alternately to left and right side of messages box
 //a left and right class exists to stylize messages as they are inserted
 //need to keep track of which side was occupied last
-var messagesBox = document.querySelector(".messages");
 var inputBox = document.querySelector("#input");
 var sendBtn = document.getElementById("send-btn");
 sendBtn.addEventListener("click", insertMessage);
