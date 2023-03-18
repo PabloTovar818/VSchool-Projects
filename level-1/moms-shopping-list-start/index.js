@@ -17,9 +17,11 @@ function addItem(e) {
         alert("No item to add!");
     }
     else {
+    var newDiv = document.createElement("div");
     var newItem = document.createElement("li");
-    newItem.textContent = input.value;
-    list.appendChild(newItem);
+    newDiv.textContent = input.value;
+    list.append(newItem);
+    newItem.append(newDiv);
     createDeleteButton(newItem);
     createEditButton(newItem);
     clearInput();
@@ -33,7 +35,7 @@ function clearInput() {
 function createDeleteButton(item) {
     var newDeleteButton = document.createElement("button");
     newDeleteButton.textContent = "X";
-    item.append(newDeleteButton);
+    item.prepend(newDeleteButton);
 
     //delete list item on click
     newDeleteButton.addEventListener("click", e => {
@@ -44,12 +46,21 @@ function createDeleteButton(item) {
 function createEditButton (item) {
     var newEditButton = document.createElement("button");
     newEditButton.textContent = "edit";
-    item.appendChild(newEditButton);
+    item.prepend(newEditButton);
 
     //edit list item on click
     newEditButton.addEventListener("click", e => {
         var userEdit = prompt("Enter new list item name: ");
-        console.log(e);
-        e.target.textContent = userEdit;
+        if (userEdit == "") {
+            alert("Enter valid name!");
+        }
+        else {
+            e.target.parentNode.lastChild.textContent = userEdit;
+        }
     })
 }
+
+//things to work on
+//1. on click edit button change li div textcontent to an input box
+//2. change edit button textcontent to save
+//3. on click save change input box back into li div textcontent that equals newly typed item name

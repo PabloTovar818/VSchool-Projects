@@ -13,7 +13,7 @@
 }
 
 .input {
-    width: 100%;
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -32,16 +32,16 @@
 }
 
 #list > li{
-    list-style-type: none;
-    margin: 10px auto;
-    
+    list-style-type: disc;
+    margin: 10px 0 0 0;
 }
 
 #list div {
-    margin-bottom: 10px;
-    text-align: center;
+    display: inline;
+    margin: 0 10px 0 10px;
+    text-align: left;
 }
 
 #list button {
-    display: block;
+    display: inline;
 }
