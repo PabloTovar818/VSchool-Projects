@@ -48,19 +48,22 @@ function createEditButton (item) {
     newEditButton.textContent = "edit";
     item.prepend(newEditButton);
 
+    
     //edit list item on click
     newEditButton.addEventListener("click", e => {
-        var userEdit = prompt("Enter new list item name: ");
-        if (userEdit == "") {
-            alert("Enter valid name!");
-        }
-        else {
-            e.target.parentNode.lastChild.textContent = userEdit;
-        }
+        var tempInput = document.createElement("input");
+        tempInput.value = item.lastChild.textContent;
+        item.lastChild.textContent = "";
+        item.lastChild.appendChild(tempInput);
+        e.target.textContent = "save";
+        saveEdits(e, item, tempInput);
     })
 }
 
-//things to work on
-//1. on click edit button change li div textcontent to an input box
-//2. change edit button textcontent to save
-//3. on click save change input box back into li div textcontent that equals newly typed item name
+function saveEdits(event, item, temp) {
+    event.target.addEventListener("click", () => {
+        item.lastChild.textContent = temp.value;
+        event.target.remove();
+        createEditButton(item);
+    })
+}
