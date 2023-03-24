@@ -23,6 +23,17 @@ var employee1 = new Employee("John Doe", "Software Developer", "$90,000");
 var employee2 = new Employee("Jane Deer", "Computer Scientist", "$120,000");
 var employee3 = new Employee("Jeff Dower", "Systems Administrator", "$80,000");
 
-console.log(employee1, employee2, employee3)
+console.log(employee1, employee2, employee3);
 
-var employee1.status = "Contract";
+//override status attribute of one employee
+employee1.status = "Contract";
+
+//push generated employee objects into employees array
+//I'm doing this before calling printEmployeeForm to use
+//a for loop for the next step
+employees.push(employee1, employee2, employee3);
+
+//call printEmployeeForm method for each employee
+for (var i = 0; i < employees.length; i++) {
+    employees[i].printEmployeeForm();
+}
