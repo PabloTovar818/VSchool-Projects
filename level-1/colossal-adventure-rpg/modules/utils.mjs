@@ -8,15 +8,5 @@ export function print(str) {
 export function displayMenu() {
     print(`Select an option: \n'w' to walk\n'c' to camp`);
     let userOption = readline.question();
-    switch(userOption) {
-        case 'w':
-            //run walk function;
-            break;
-        case 'c':
-            //run camp function;
-            break;
-        default:
-            print(`invalid option`);
-            break;
-    }
+    return userOption;
 }
