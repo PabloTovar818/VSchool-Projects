@@ -1,11 +1,12 @@
 class Player {
-    constructor(name, hp, speed, attack, defense) {
+    constructor(name, hp, speed, attack) {
         this.name = name;
         this.hp = hp;
+        this.maxHp = hp;
         this.speed = speed;
         this.attack = attack;
-        this.defense = defense;
+        this.isAlive = true;
     }
 }
 
-export let character = new Player("", 20, 5, 5, 10);
+export let character = new Player("", 20, 5, 5);
