@@ -3,7 +3,7 @@ import * as item from "./items.mjs";
 import * as player from "./player.mjs";
 import readline from "../node_modules/readline-sync/lib/readline-sync.js";
 
-let distance = 0;
+export let distance = 0;
 //print
 export function print(str) {
     console.log(str);
@@ -11,13 +11,32 @@ export function print(str) {
 
 //main menu
 export function displayMenu() {
-    print(`Select an option: \n'w' to walk\n'c' to camp`);
+    print(`Select an option: \n'w' to walk\n'c' to camp\n'i' for item submenu`);
     let userOption = readline.question();
-    return userOption;
+    switch(userOption) {
+        case "w":
+            //call walk function
+            let combatArr = walk();
+            if (combatArr[0]) {
+                displayCombatMenu(combatArr[1]);
+            };
+            distance++;
+            break;
+        case "c":
+            //call camp function
+            break;
+        case "s":
+            //call check status function
+            break;
+        case "i":
+            //call item menu function
+        default:
+            print(`invalid selection`);
+    }
 }
 
 //walk function
-export function walk() {
+function walk() {
     print(`${player.character.name} is walking...`);
     let encounter = encounterChance();
     return encounter;
@@ -70,17 +89,19 @@ function encounterChance() {
     }
 }
 
-//combat menu function
-export function displayCombatMenu(enemy) {
-    while (player.character.hp > 0 && enemy.hp > 0) {
+//combat menu function ****remember this is where combat starts so create new enemy object here
+export function displayCombatMenu(target) {
+    //create new enemy instance with passed enemy properties
+    let currentEnemy = new enemy.Enemy(target.type, target.hp, target.speed, target.minAttack, target.maxAttack);
+    while (player.character.hp > 0 && currentEnemy.hp > 0) {
         print(`${player.character.name} hp: ${player.character.hp}`);
-        print(`${enemy.type} hp: ${enemy.hp}`);
+        print(`${currentEnemy.type} hp: ${currentEnemy.hp}`);
         print(`'f' to fight!\n'r' to run!`);
         let userOption = readline.question();
         switch(userOption) {
             case 'f':
-                //call fight function
-                battle(enemy);
+                //call battle function
+                battle(currentEnemy);
                 break;
             case 'r':
                 //call run function
@@ -92,27 +113,51 @@ export function displayCombatMenu(enemy) {
 }
 
 function battle(enemy) {
-    if (player.character.speed > enemy.speed) {
-        print(`${player.character.name} attacks ${enemy.type}`);
-        enemy.hp -= player.character.attack;
-        if (enemy.hp > 0) {
-            print(`${enemy.type} attacks ${player.character.name}`);
-            player.character.hp -= enemy.attack;
+    let playerDamage = getAttackDamage(player.character.minAttack, player.character.maxAttack);
+    let enemyDamage = getAttackDamage(enemy.minAttack, enemy.maxAttack);
+    if (player.character.speed > enemy.speed) {                      
+        print(`${player.character.name} attacks ${enemy.type} for ${playerDamage}`);
+        enemy.hp -= playerDamage;                         //implement min max attack
+        if (checkIfAlive(enemy)) {                                                              //check if enemy is dead after being hit
+            print(`${enemy.type} attacks ${player.character.name} for ${enemyDamage}`);
+            player.character.hp -= enemyDamage;
+            if (!checkIfAlive(player.character)) {
+                print(`${player.character.name} was slain by ${enemy.type}!`);
+                player.character.isAlive = false;
+            }
         }
         else {
             print(`${player.character.name} defeated ${enemy.type}!`);
         }
     }
     else {
-        print(`${enemy.type} attacks ${player.character.name}`);
-        player.character.hp -= enemy.attack;
-        if (player.character.hp > 0) {
-            print(`${player.character.name} attacks ${enemy.type}`);
-            enemy.hp -= player.character.attack;
+        print(`${enemy.type} attacks ${player.character.name} for ${enemyDamage}`);
+        player.character.hp -= enemyDamage;
+        if (checkIfAlive(player.character)) {
+            print(`${player.character.name} attacks ${enemy.type} for ${playerDamage}`);
+            enemy.hp -= playerDamage;
+            if (!checkIfAlive(enemy)) {
+                print(`${player.character.name} defeated ${enemy.type}!`);
+            }
         }
         else {
             print(`${player.character.name} was slain by ${enemy.type}!`);
             player.character.isAlive = false;
         }
     }
+}
+
+function checkIfAlive(target) {
+    if (target.hp > 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function getAttackDamage(targetMinAttack, targetMaxAttack) {
+    let min = Math.ceil(targetMinAttack);
+    let max = Math. floor(targetMaxAttack);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
