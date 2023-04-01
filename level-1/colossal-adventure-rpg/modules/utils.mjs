@@ -93,7 +93,8 @@ function encounterChance() {
 export function displayCombatMenu(target) {
     //create new enemy instance with passed enemy properties
     let currentEnemy = new enemy.Enemy(target.type, target.hp, target.speed, target.minAttack, target.maxAttack);
-    while (player.character.hp > 0 && currentEnemy.hp > 0) {
+    let run = false;
+    while ((player.character.hp > 0 && currentEnemy.hp > 0) && run == false) {
         print(`${player.character.name} hp: ${player.character.hp}`);
         print(`${currentEnemy.type} hp: ${currentEnemy.hp}`);
         print(`'f' to fight!\n'r' to run!`);
@@ -104,7 +105,7 @@ export function displayCombatMenu(target) {
                 battle(currentEnemy);
                 break;
             case 'r':
-                //call run function
+                run = runChance(currentEnemy);
                 break;
             default:
                 print(`invalid option`);
@@ -160,4 +161,23 @@ function getAttackDamage(targetMinAttack, targetMaxAttack) {
     let min = Math.ceil(targetMinAttack);
     let max = Math. floor(targetMaxAttack);
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function runChance(enemy) {
+    let chance = Math.random() * 100;
+    if (chance <= 50) {
+        print(`${player.character.name} ran from ${enemy.type}!`)
+        return true;
+    }
+    else {
+        print(`${player.character.name} couldn't escape!!`)
+        let enemyDamage = getAttackDamage(enemy.minAttack, enemy.maxAttack);
+        print(`${enemy.type} attacks ${player.character.name} for ${enemyDamage}!`)
+        player.character.hp -= enemyDamage;
+        if (!checkIfAlive(player.character)) {
+            print(`${player.character.name} was slain by ${enemy.type}!`);
+            player.character.isAlive = false;
+        }
+        return false;
+    }
 }
