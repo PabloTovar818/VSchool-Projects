@@ -1,17 +1,14 @@
-let potion = {
-    recoverAmount: 10,
+class Item {
+    constructor(type, value) {
+        this.type = type;
+        this.value = value;
+    }
 }
 
-let attackJem = {
-    value: 1,
-}
+export const potion = new Item('potion', 10);
+export const attackJem = new Item('attack jem', 1);
+export const speedJem = new Item('speed jem', 1);
+export const hpJem = new Item('hp jem', 1);
+export const tent = new Item('tent', false);
 
-let speedJem = {
-    value: 1,
-}
-
-let hpJem = {
-    value: 5,
-}
-
-let tent = false;
+export let itemArray = [potion, attackJem, speedJem, hpJem, tent];

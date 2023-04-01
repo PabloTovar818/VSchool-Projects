@@ -29,7 +29,8 @@ export function displayMenu() {
             //call check status function
             break;
         case "i":
-            //call item menu function
+            displayInventoryMenu();
+            break;
         default:
             print(`invalid selection`);
     }
@@ -97,15 +98,17 @@ export function displayCombatMenu(target) {
     while ((player.character.hp > 0 && currentEnemy.hp > 0) && run == false) {
         print(`${player.character.name} hp: ${player.character.hp}`);
         print(`${currentEnemy.type} hp: ${currentEnemy.hp}`);
-        print(`'f' to fight!\n'r' to run!`);
+        print(`'f' to fight!\n'r' to run!\n'i' for item submenu`);
         let userOption = readline.question();
         switch(userOption) {
             case 'f':
-                //call battle function
                 battle(currentEnemy);
                 break;
             case 'r':
                 run = runChance(currentEnemy);
+                break;
+            case 'i':
+                displayInventoryMenu();
                 break;
             default:
                 print(`invalid option`);
@@ -179,5 +182,84 @@ function runChance(enemy) {
             player.character.isAlive = false;
         }
         return false;
+    }
+}
+
+function displayInventoryMenu() {
+    if (player.character.inventory.length == 0) {
+        print(`no items in inventory`);
+    }
+    else {
+        print(`current inventory status:`);
+        //display items only if they are in inventory
+        if (player.character.inventory.includes(item.potion)) {
+            print(`'p' for potion`);
+        }
+        if (player.character.inventory.includes(item.attackJem)) {
+            print(`'a' for attack jem`);
+        }
+        if (player.character.inventory.includes(item.speedJem)) {
+            print(`'s' for speed jem`);
+        }
+        if (player.character.inventory.includes(item.hpJem)) {
+            print(`'h' for hp jem`);
+        }
+        print(`'x' to exit`);
+        let userOption = readline.question();
+        switch(userOption) {
+            case 'p':
+                if (player.character.inventory.includes(item.potion)) {
+                    let index = player.character.inventory.indexOf(item.potion);
+                    print(`${player.character.name} used ${player.character.inventory[index].type}`);
+                    if (player.character.hp == player.character.maxHp) {
+                        print(`hp already at max`);
+                    }
+                    else if (player.character.hp >= (player.character.maxHp - 10)) {
+                        player.character.hp = player.character.maxHp;
+                        player.character.inventory.splice(index, 1);
+                    }
+                    else {
+                        player.character.hp += player.character.inventory[index].value;
+                        player.character.inventory.splice(index, 1);
+                    }
+                }
+                else {
+                    print(`no potion in inventory`);
+                }
+            case 'a':
+                if (player.character.inventory.includes(item.attackJem)) {
+                    let index = player.character.inventory.indexOf(item.attackJem);
+                    print(`${player.character.name} used attack jem boosting max attack`);
+                    player.character.attack += player.character.inventory[index].value;
+                    player.character.inventory.splice(index, 1);
+                }
+                else {
+                    print(`no attack jem in inventory`);
+                }
+            case 's':
+                if (player.character.inventory.includes(item.speedJem)) {
+                    let index = player.character.inventory.indexOf(item.speedJem);
+                    print(`${player.character.name} used speed jem boosting max speed`);
+                    player.character.speed += player.character.inventory[index].value;
+                    player.character.inventory.splice(index, 1);
+                }
+                else {
+                    print(`no speed jem in inventory`);
+                }
+            case 'h':
+                if (player.character.inventory.includes(item.hpJem)) {
+                    let index = player.character.inventory.indexOf(item.hpJem);
+                    print(`${player.character.name} used hp jem boosting max hp`);
+                    player.character.maxHp += player.character.inventory[index].value;
+                    player.character.inventory.splice(index, 1);
+                }
+                else {
+                    print(`no hp jem in inventory`);
+                }
+            case 'x':
+                return;
+            default:
+                print(`invalid option`);
+        }
     }
 }

@@ -6,4 +6,3 @@ add random item drops after defeating enemies
     if player gets item push to player.inventory
     if player uses item remove from player.inventory
 add maxSpeed, maxAttack stats to player
-add run function
