@@ -6,6 +6,7 @@ class Player {
         this.speed = speed;
         this.attack = attack;
         this.isAlive = true;
+        this.inventory = [];
     }
 }
 

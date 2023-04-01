@@ -1,0 +1,11 @@
+//3/31/21
+
+things to work on:
+add item option to combat menu and display menu
+add random item drops after defeating enemies
+    if player gets item push to player.inventory
+    if player uses item remove from player.inventory
+add maxSpeed, maxAttack stats to player
+add run function
+add min and max attack values to player and enemies
+during battle attack value is selected from min and max attack range
