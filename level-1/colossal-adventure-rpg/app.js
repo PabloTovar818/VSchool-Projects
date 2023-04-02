@@ -7,6 +7,7 @@ import * as readline from "./node_modules/readline-sync/lib/readline-sync.js";
 util.print("Welcome to Colossal Adventure RPG!");
 util.print("Enter your character's name:");
 player.character.name = readline.question();
+util.printLinebreak();
 util.print(`${player.character.name} prepares for an adventure!`);
 
 while(player.character.isAlive) {

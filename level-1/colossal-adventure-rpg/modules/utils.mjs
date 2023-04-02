@@ -9,13 +9,20 @@ export function print(str) {
     console.log(str);
 }
 
+export function printLinebreak() {
+    console.log(`**********************************`);
+}
+
 //main menu
 export function displayMenu() {
-    print(`Select an option: \n'w' to walk\n'c' to camp\n'i' for item submenu`);
+    printLinebreak();
+    print(`Select an option: \n'w' to walk\n'c' to camp\n's' for status\n'i' for item submenu`);
     let userOption = readline.question();
+    printLinebreak();
     switch(userOption) {
         case "w":
-            //call walk function
+            //run itemdropchance first
+            itemDropChance();
             let combatArr = walk();
             if (combatArr[0]) {
                 displayCombatMenu(combatArr[1]);
@@ -26,7 +33,7 @@ export function displayMenu() {
             //call camp function
             break;
         case "s":
-            //call check status function
+            checkStatus();
             break;
         case "i":
             displayInventoryMenu();
@@ -117,12 +124,13 @@ export function displayCombatMenu(target) {
 }
 
 function battle(enemy) {
+    printLinebreak();
     let playerDamage = getAttackDamage(player.character.minAttack, player.character.maxAttack);
     let enemyDamage = getAttackDamage(enemy.minAttack, enemy.maxAttack);
     if (player.character.speed > enemy.speed) {                      
         print(`${player.character.name} attacks ${enemy.type} for ${playerDamage}`);
-        enemy.hp -= playerDamage;                         //implement min max attack
-        if (checkIfAlive(enemy)) {                                                              //check if enemy is dead after being hit
+        enemy.hp -= playerDamage;                         
+        if (checkIfAlive(enemy)) {
             print(`${enemy.type} attacks ${player.character.name} for ${enemyDamage}`);
             player.character.hp -= enemyDamage;
             if (!checkIfAlive(player.character)) {
@@ -132,6 +140,7 @@ function battle(enemy) {
         }
         else {
             print(`${player.character.name} defeated ${enemy.type}!`);
+            itemDropChance();
         }
     }
     else {
@@ -142,6 +151,7 @@ function battle(enemy) {
             enemy.hp -= playerDamage;
             if (!checkIfAlive(enemy)) {
                 print(`${player.character.name} defeated ${enemy.type}!`);
+                itemDropChance();
             }
         }
         else {
@@ -186,6 +196,7 @@ function runChance(enemy) {
 }
 
 function displayInventoryMenu() {
+    printLinebreak();
     if (player.character.inventory.length == 0) {
         print(`no items in inventory`);
     }
@@ -260,6 +271,55 @@ function displayInventoryMenu() {
                 return;
             default:
                 print(`invalid option`);
+        }
+    }
+}
+
+function itemDropChance() {
+    let chance = Math.round((Math.random() * 100));
+    if (chance >= 0 && chance < 50) {
+        //no item
+    }
+    else if (chance >= 50 && chance < 75) {
+        //drop potion
+        print(`${player.character.name} found ${item.itemArray[0].type}`);
+        player.character.inventory.push(item.itemArray[0]);
+    }
+    else if (chance >= 75 && chance < 80) {
+        //drop attack jem
+        print(`${player.character.name} found ${item.itemArray[1].type}`);
+        player.character.inventory.push(item.itemArray[1]);
+    }
+    else if (chance >= 80 && chance < 85) {
+        //drop speed jem
+        print(`${player.character.name} found ${item.itemArray[2].type}`);
+        player.character.inventory.push(item.itemArray[2]);
+    }
+    else if (chance >= 85 && chance < 90) {
+        //drop hp jem
+        print(`${player.character.name} found ${item.itemArray[3].type}`);
+        player.character.inventory.push(item.itemArray[3]);
+    }
+    else if (chance >= 90 && chance <= 100) {
+        //drop tent
+        print(`${player.character.name} found ${item.itemArray[4].type}`);
+        player.character.inventory.push(item.itemArray[4]);
+    }
+}
+
+function checkStatus() {
+    print(`${player.character.name} stats`);
+    print(`Current HP: ${player.character.hp}`);
+    print(`Max Hp: ${player.character.maxHp}`);
+    print(`Attack: ${player.character.attack}`);
+    print(`Speed: ${player.character.speed}`);
+    print(`Inventory:`);
+    if (player.character.inventory.length == 0) {
+        print(`no items in inventory`);
+    }
+    else {
+        for (var i = 0; i < player.character.inventory.length; i++) {
+            print(`${i + 1}: ${player.character.inventory[i].type}`);
         }
     }
 }
