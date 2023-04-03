@@ -334,7 +334,7 @@ function checkStatus() {
 
 function camp() {
     if (player.character.inventory.includes(item.tent)) {
-        print(`${player.character.name} pitches a tent and camps for the night.\n ${player.character.name} recovers all their health`);
+        print(`${player.character.name} pitches a tent and camps for the night.\n${player.character.name} recovers all their health`);
         player.character.hp = player.character.maxHp;
         let index = player.character.inventory.indexOf(item.tent);
         player.character.inventory.splice(index, 1);
