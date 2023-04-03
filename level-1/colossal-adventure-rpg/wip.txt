@@ -4,8 +4,4 @@ things to work on:
 add camp function 
     consumes 1 tent to fully restore hp
     if no tent then player cannot camp
-
-add status function to check player stats
-
-fix player finds item even after being slain
 fix no 'item' in inventory after using any item

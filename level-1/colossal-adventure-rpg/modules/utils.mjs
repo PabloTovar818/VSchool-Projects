@@ -21,16 +21,17 @@ export function displayMenu() {
     printLinebreak();
     switch(userOption) {
         case "w":
-            //run itemdropchance first
-            itemDropChance();
             let combatArr = walk();
             if (combatArr[0]) {
                 displayCombatMenu(combatArr[1]);
             };
+            if (player.character.isAlive) {
+                itemDropChance();                   //make sure player survives walk before dropping loot
+            }
             distance++;
             break;
         case "c":
-            //call camp function
+            camp();
             break;
         case "s":
             checkStatus();
@@ -237,16 +238,21 @@ function displayInventoryMenu() {
                 else {
                     print(`no potion in inventory`);
                 }
+                break;
             case 'a':
                 if (player.character.inventory.includes(item.attackJem)) {
                     let index = player.character.inventory.indexOf(item.attackJem);
                     print(`${player.character.name} used attack jem boosting max attack`);
                     player.character.attack += player.character.inventory[index].value;
+                    //scale player min and max attack
+                    player.character.minAttack = player.character.attack - 3;
+                    player.character.maxAttack = player.character.attack + 3;
                     player.character.inventory.splice(index, 1);
                 }
                 else {
                     print(`no attack jem in inventory`);
                 }
+                break;
             case 's':
                 if (player.character.inventory.includes(item.speedJem)) {
                     let index = player.character.inventory.indexOf(item.speedJem);
@@ -257,6 +263,7 @@ function displayInventoryMenu() {
                 else {
                     print(`no speed jem in inventory`);
                 }
+                break;
             case 'h':
                 if (player.character.inventory.includes(item.hpJem)) {
                     let index = player.character.inventory.indexOf(item.hpJem);
@@ -267,6 +274,7 @@ function displayInventoryMenu() {
                 else {
                     print(`no hp jem in inventory`);
                 }
+                break;
             case 'x':
                 return;
             default:
@@ -321,5 +329,17 @@ function checkStatus() {
         for (var i = 0; i < player.character.inventory.length; i++) {
             print(`${i + 1}: ${player.character.inventory[i].type}`);
         }
+    }
+}
+
+function camp() {
+    if (player.character.inventory.includes(item.tent)) {
+        print(`${player.character.name} pitches a tent and camps for the night.\n ${player.character.name} recovers all their health`);
+        player.character.hp = player.character.maxHp;
+        let index = player.character.inventory.indexOf(item.tent);
+        player.character.inventory.splice(index, 1);
+    }
+    else {
+        print(`No tent in inventory.`);
     }
 }
