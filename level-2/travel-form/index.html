@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <form name="travelForm">
+        <input type="text" name="firstName" placeholder="first name" required>
+        <input type="text" name="lastName" placeholder="last name" required>
+        <input type="number" name="age" required>
+        <div class="inline">
+            <input type="radio" name="gender" value="Male" checked>Male
+            <input type="radio" name="gender" value="Female">Female    
+        </div>
+        <br>
+        <select name="dropdown">
+            <option name="location" selected>Rome, Italy</option>
+            <option name="location">New York, USA</option>
+            <option name="location">Tokyo, Japan</option>
+        </select><br>
+        <div class="inline">
+            <input type="checkbox" name="diet" value="vegetarian">Vegetarian
+            <input type="checkbox" name="diet" value="kosher">Kosher
+            <input type="checkbox" name="diet" value="lactose free">Lactose Free    
+        </div>
+        <br>
+        <button name="submit">Submit</button>
+    </form>
+</body>
+</html>
