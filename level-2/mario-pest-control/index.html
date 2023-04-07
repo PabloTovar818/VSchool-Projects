@@ -8,28 +8,36 @@
     <script src="./main.js" defer></script>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-    <div id="header">
-        <h1>Mario Pest Control</h1>
-    </div>
-    <form name="marioForm">
-        <ul>
-            <li><img src="./img/Goomba.PNG">Goombas 5 coins
-                <input type="number" name="goombaCount">
-            </li>
-            <li><img src="./img/Bob-omb,_New_Super_Mario_Bros._U.webp">Bob-ombs 7 coins
-                <input type="number" name="bobombCount">
-            </li>
-            <li><img src="./img/200px-CheepCheepNSMBU.webp">Cheep-cheeps 11 coins
-                <input type="number" name="cheepcheepCount">
-            </li>
-        </ul>
-        <p id="total-price"></p>
+<body background="./img/mario-wallpaper.jpg">
+    <div class="container">
+        <div id="header">
+            <h1>Mario Pest Control</h1>
+        </div>
+        <form name="marioForm">
+            <ul>
+                <li class="list-item"><img src="./img/Goomba.PNG">
+                    <p>Goombas: 5 coins</p>
+                    <div class="center"><input type="number" name="goombaCount" placeholder="0" required></div>
+                </li>
+                <li class="list-item"><img src="./img/Bob-omb,_New_Super_Mario_Bros._U.webp">
+                    <p>Bob-ombs: 7 coins</p>
+                    <div class="center"><input type="number" name="bobombCount" placeholder="0" required></div>
+                </li>
+                <li class="list-item"><img src="./img/200px-CheepCheepNSMBU.webp">
+                    <p>Cheep-cheeps: 11 coins</p>
+                    <div class="center"><input type="number" name="cheepcheepCount" placeholder="0" required></div>
+                </li>
+            </ul>
+            <div id="total"></div>
+            <div class="center">        
+                <button>Submit</button>
+            </div>
+        </form>
         <div class="footer">
             <p>Mario.Bro@nintendo.com</p>
             <p>www.mariobros.com</p>
             <p>123 Plumber St, Mushroom Kingdom, 12345</p>
         </div>
-    </form>
+    </div>
 </body>
 </html>
