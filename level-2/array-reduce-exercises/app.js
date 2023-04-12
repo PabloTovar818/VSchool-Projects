@@ -107,9 +107,26 @@ function voterResults(arr) {
    const voterStats = arr.reduce(function(final, array) {
     if (array.age >= 18 && array.age <= 25) {
         final.numYoungPeople++;
+        if (array.voted) {
+            final.numYoungVotes++;
+        }
+        return final;
+    }
+    else if (array.age >= 26 && array.age <= 35) {
+        final.numMidPeople++;
+        if (array.voted) {
+            final.numMidVotes++;
+        }
+        return final;
+    }
+    else {
+        final.numOldPeople++;
+        if (array.voted) {
+            final.numOldVotes++;
+        }
     }
     return final;
-   }, {numYoungPeople: 0})
+   }, {numYoungPeople: 0, numYoungVotes: 0, numMidVotes: 0, numMidPeople: 0, numOldVotes: 0, numOldPeople: 0})
    return voterStats;
 }
 
