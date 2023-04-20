@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     display: grid;
     margin: 0;
