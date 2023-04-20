@@ -22,6 +22,7 @@ body {
 #title {
     margin-top: 30px;
     height: 120px;
+    grid-row: 1 / 2;
 }
 
 #title > h1 {
@@ -63,6 +64,10 @@ body {
     margin: 10px;
 }
 
+#top-main-about {
+    grid-row: 3 / 4;
+}
+
 #top-main-about > h2, #mid-main-content > h2, #bot-main-requirements > h2 {
     margin-top: 30px;
     margin-bottom: -10px;
@@ -73,6 +78,11 @@ body {
 #mid-main-content {
     margin: unset;
     background-color: rgba(138,188,159,0.5);
+    grid-row: 4 / 5;
+}
+
+#bot-main-requirements {
+    grid-row: 5 / 6;
 }
 
 #footer {
@@ -80,5 +90,43 @@ body {
     color: rgba(255, 255, 255, 0.7);
     background-image: url(./img/koi.jpg);
     background-size: cover;
+    font-family: "Julius Sans One", sans-serif;
     font-size: large;
+    grid-row: 6 / 7;
+}
+
+#logos {
+    display: flex;
+    padding: 20px;
+    justify-content: space-evenly;
+    grid-row: 7 / 8;
+    background-color: #134347;
+    font-family: "Julius Sans One", sans-serif;
+    color: #607476;
+}
+
+#top-main-credits {
+    grid-row: 8 / 9;
+    background-color: #edf4f0;
+    font-family: "Julius Sans One", sans-serif;
+    color: #607476;
+}
+
+#top-main-credits > ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+#top-main-credits > ul > li {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: none;
+    font-size: 13px;
+    border-top: solid 1px #d9e3dc;
+}
+
+#top-main-credits > ul > li:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
