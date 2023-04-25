@@ -1,0 +1,86 @@
+{
+    "menu": [
+        {
+            "appetizers": [
+                {
+                    "name": "mozarella sticks",
+                    "price": 8,
+                    "available": true,
+                    "description": "breaded deep fried cheese stick"
+                },
+
+                {
+                    "name": "fried pickles",
+                    "price": 9,
+                    "available": true,
+                    "dippingSauce": ["ranch", "blue cheese", "garlic sauce"],
+                    "description": "deep fried pickles tossed in JSON special seasoning"
+                },
+
+                {
+                    "name": "meat cakes",
+                    "price": 10,
+                    "available": true,
+                    "meat": ["ground beef", "ground turkey", "chicken"],
+                    "description": "fried meat cake with options for ground beef, ground turkey, or chicken"
+                }
+            ],
+
+            "cold sandwiches": [
+                {
+                    "name": "JSON BLT",
+                    "ingredients": ["bacon", "lettuce", "tomato", "JSON mayo"],
+                    "description": "Famous JSON BLT with special JSON Mayo"
+                },
+
+                {
+                    "name": "JSON.parseley()",
+                    "ingredients": ["ham", "provolone", "JSON parsley pesto"],
+                    "description": "Simple ham and cheese sandwich with special JSON parsley pesto sauce"
+                }
+            ],
+
+            "hot sandwiches": [
+                {
+                    "name": "JSON Steamer",
+                    "ingredients": ["roast beef", "brisket", "JSON bbq sauce", "pickles"],
+                    "description": "Toasted roast beef and brisket sub topped with pickles and special JSON bbq sauce"
+                },
+
+                {
+                    "name": "JSON.stringcheeseify()",
+                    "ingredients": ["ham", "turkey", "string cheese", "JSON mayo"],
+                    "description": "When you need your js to be json. Topped with JSON mayo"
+                }
+            ],
+
+            "deserts": [
+                {
+                    "name": "Jelly Sundae Over Nutella",
+                    "ingredients": ["vanilla ice cream", "strawberry jelly", "nutella"],
+                    "description": "The name speaks for itself, JSON"
+                },
+
+                {
+                    "name": "Banana.split()",
+                    "ingredients": ["banana", "neopolitan ice cream", "whipped cream", "cherry"],
+                    "description": "Banana topped with ice cream, whipped cream, and a cherry"
+                }
+            ],
+
+            "drinks": [
+                {
+                    "name": "coffee",
+                    "ingredients": ["black coffee", "2% milk", "sugar"],
+                    "description": "For those moments when you are debugging your js just to realize you never linked it..."
+                },
+
+                {
+                    "name": "JSON Cola",
+                    "ingredients": ["soda", "whiskey"],
+                    "description": "JSON Deli special cocktail"
+                }
+            ]
+        }
+    ]
+}
