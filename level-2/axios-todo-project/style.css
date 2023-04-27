@@ -1,0 +1,29 @@
+#grid {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 10% 90%;
+}
+
+#header {
+    display: grid;
+    grid-column: 2 / 3;
+    justify-content: center;
+}
+
+#todo-form {
+    display: grid;
+    grid-row: 2 / 3;
+    justify-content: center;
+    height: 25%;
+    margin-left: 10px;
+}
+
+#todo-list {
+    display: grid;
+    grid-row: 2 / 3;
+    list-style: none;
+}
+
+.completed {
+    text-decoration: line-through;
+}
