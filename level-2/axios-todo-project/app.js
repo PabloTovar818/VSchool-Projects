@@ -11,12 +11,15 @@ function listData(data) {
     for (let i = 0; i < data.length; i++) {
         const list = document.createElement("li");
         const checkbox = document.createElement("input");
+        const button = document.createElement("button");
         const div = document.createElement("div");
         const h1 = document.createElement("h1");
         const desc = document.createElement("p");
         const identifier = document.createElement("p");
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("onchange", "checkboxChanged(this)");
+        button.setAttribute("class", "button-style delete-button");
+        button.setAttribute("onclick", "deleteRequest(this)");
         list.setAttribute(`id`, `item${i}`);
         list.setAttribute("class", "list-style")
 
@@ -25,10 +28,12 @@ function listData(data) {
             checkbox.defaultChecked = true;
         }
 
+        button.textContent = "Delete";
         h1.textContent = data[i].title;
         desc.textContent =  `Description: ${data[i].description}`;
         identifier.textContent = `ID: ${data[i]._id}`;
         todoList.appendChild(list);
+        list.appendChild(button);
         list.appendChild(checkbox);
         list.appendChild(div);
         div.appendChild(h1);
@@ -50,8 +55,10 @@ function postRequest(value) {
        .catch(error => console.log(error))
 }
 
-function deleteRequest() {
-    const id = todoForm.identifier.value;
+function deleteRequest(button) {
+    let text = button.nextSibling.nextSibling.childNodes[2].textContent;
+    let id = text.slice(4);
+
     axios.delete(`https://api.vschool.io/pablo/todo/${id}`)
         .then(response => getRequest())
         .catch(error => console.log(error))
@@ -99,8 +106,6 @@ const form = document.todoForm.addEventListener("submit", (e) => {
     postRequest(newItem);
 });
 
-const refreshButton = document.querySelector("#refresh-button").addEventListener("click", getRequest);
-const deleteButton = document.querySelector('#delete-button').addEventListener("click", deleteRequest);
 const editButton = document.querySelector('#put-button').addEventListener("click", (e) => {
     let changes = {};
     if (todoForm.title.value === "") {
@@ -114,7 +119,6 @@ const editButton = document.querySelector('#put-button').addEventListener("click
         }
     }
     else {
-        console.log("firing else")
         changes = {
             title: todoForm.title.value,
             description: todoForm.description.value
