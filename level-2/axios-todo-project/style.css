@@ -33,6 +33,7 @@
     border: none;
     height: 30px;
     transition: background 0.3s;
+    border-radius: 3px;
 }
 
 .button-style:hover {
