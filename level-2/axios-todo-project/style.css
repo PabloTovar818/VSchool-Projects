@@ -50,7 +50,6 @@
 }
 
 #todo-list {
-    display: grid;
     grid-row: 2 / 3;
     list-style: none;
     overflow: scroll;
@@ -58,6 +57,10 @@
 
 .list-style {
     display: flex;
+}
+
+.list-style > div {
+    align-self: start;
 }
 
 .list-style > input[type=checkbox] {
