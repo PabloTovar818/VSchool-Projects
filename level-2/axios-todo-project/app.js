@@ -1,4 +1,5 @@
 function getRequest() {
+    clearInputs();
     axios.get("https://api.vschool.io/pablo/todo")
         .then(response => listData(response.data))
         .catch(error => console.log(error))
@@ -17,6 +18,7 @@ function listData(data) {
         checkbox.setAttribute("type", "checkbox");
         checkbox.setAttribute("onchange", "checkboxChanged(this)");
         list.setAttribute(`id`, `item${i}`);
+        list.setAttribute("class", "list-style")
 
         if (data[i].completed) {
             div.setAttribute("class", "completed");
