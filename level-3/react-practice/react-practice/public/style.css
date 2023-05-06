@@ -1,0 +1,50 @@
+html, body {
+    height: 98%;
+}
+
+header {
+    box-shadow: 0 10px 10px rgba(186, 186, 186, 0.5);
+}
+
+.logo {
+    height: 60px;
+    width: 60px;
+}
+
+.nav-items {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.nav-items > li {
+    height: 100%;
+    padding: 10px;
+}
+
+.nav-items > li:hover {
+    background-color: rgba(186, 186, 186, 0.5);
+    transition: background-color 0.5s;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    padding-left: 25px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 73px;
+    background-color: rgba(186, 186, 186, 0.5);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
