@@ -1,0 +1,65 @@
+html, body {
+    font-family: "Inter", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: #2e3136;
+    background-image: url(./img/logo512.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.navbar {
+    height: 100px;
+}
+
+.navbar, .logo-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #25272c;
+}
+
+.navbar > h3 {
+    font-weight: 600;
+    color: #ecf3f8;
+}
+
+.logo {
+    height: 40px;
+}
+
+.nav--logo_text {
+    padding-left: 10px;
+    color: #9cd7f8;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    color: #ecf3f8;
+    padding: 0 20px;
+}
+
+.main--title {
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+}
+
+.main--list > li {
+    padding-block: 10px;
+    font-size: 18px;
+    max-width: 400px;
+}
+
+.main--list > li::marker {
+    font-size: 1.5rem;
+    color: #9cd7f8;
+}
