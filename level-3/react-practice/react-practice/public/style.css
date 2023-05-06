@@ -4,11 +4,13 @@ html, body {
 
 header {
     box-shadow: 0 10px 10px rgba(186, 186, 186, 0.5);
+    padding: 0 20px 0 20px;
 }
 
 .logo {
     height: 60px;
     width: 60px;
+    margin-right: auto;
 }
 
 .nav-items {
@@ -20,6 +22,7 @@ header {
 .nav-items > li {
     height: 100%;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .nav-items > li:hover {
