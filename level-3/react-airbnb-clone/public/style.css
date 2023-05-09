@@ -66,27 +66,22 @@ navbar {
 .card-container {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
-    padding-left: 20px;
+    margin: 10px 0;
 }
 
 .card {
     margin: 0;
-    padding-right: 6px;
-}
-
-.card--image {
-    height: 120px;
+    padding: 0 5px;
 }
 
 .rating {
     display: flex;
+    justify-content: center;
 }
 
 .card--stats {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin: 0;
     padding: 0;
