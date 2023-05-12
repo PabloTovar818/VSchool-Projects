@@ -126,4 +126,4 @@ const editButton = document.querySelector('#put-button').addEventListener("click
     }
     const todoId = todoForm.identifier.value;
     putRequest(todoId, changes);
-});
+})
