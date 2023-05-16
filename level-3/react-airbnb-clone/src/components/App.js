@@ -5,15 +5,10 @@ import Card from "./Card"
 import data from "../data"
 
 export default function App() {
-    const cardComponent = data.map(experience => {
+    const cardComponent = data.map(item => {
         return <Card 
-            img={experience.coverImg}
-            imgAlt={experience.title}
-            rating={experience.stats.rating}
-            reviewCount={experience.stats.reviewCount}
-            location={experience.location}
-            title={experience.title}
-            price={experience.price}
+            key={item.id}
+            item={item}
         />
     })
     return (

@@ -71,12 +71,22 @@ navbar {
 }
 
 .card {
+    position: relative;
     margin: 0;
     padding: 0 5px;
 }
 
 .card--image {
     min-width: 300px;
+}
+
+.card--badge {
+    top: 10px;
+    left: 15px;
+    padding: 2px 5px;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
 }
 
 .rating {
